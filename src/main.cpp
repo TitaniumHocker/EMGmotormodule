@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <string.h>
 #include <SoftwareSerial.h>
 
 //Bluetooth HC-05 pins:
@@ -51,13 +50,10 @@ void setup() {
   btSerial.begin(38400);
   //SetUP motors and speed to zero:
   pinMode(EN1, OUTPUT);
-  analogWrite(EN1, 0);
   pinMode(EN2, OUTPUT);
-  analogWrite(EN2, 0);
   pinMode(EN3, OUTPUT);
-  analogWrite(EN3, 0);
   pinMode(EN4, OUTPUT);
-  analogWrite(EN4, 0);
+  setMotorSpeed(0);
   //SetUp 74HC595:
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
