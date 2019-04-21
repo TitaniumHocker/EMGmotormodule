@@ -68,20 +68,22 @@ void setup() {
 void loop() {
   if (btSerial.available() > 0){
     char ch = btSerial.read();
-    if (ch == '\n'){
-      i = 0;
-      buff[i++] = ch;
-      Serial.print(buff);
-      sscanf(buff, "%i %i %i %i %i", 
-            &sensorValue1,
-            &sensorValue2,
-            &filteredSensorValue,
-            &threshold1,
-            &threshold2);
-      //Serial.println(filteredSensorValue);
-      memset(buff, 0, sizeof(buff));
-    }else{
-      buff[i++] = ch;
+    if(ch < 60 && ch > 1){
+      if (ch == '\n'){
+        i = 0;
+        buff[i++] = ch;
+        Serial.print(buff);
+        sscanf(buff, "%i %i %i %i %i", 
+              &sensorValue1,
+              &sensorValue2,
+              &filteredSensorValue,
+              &threshold1,
+              &threshold2);
+        //Serial.println(filteredSensorValue);
+        memset(buff, 0, sizeof(buff));
+      }else{
+        buff[i++] = ch;
+      }
     }
   }
   if(filteredSensorValue > threshold1 * 1.5){
